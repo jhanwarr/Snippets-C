@@ -4,7 +4,6 @@
 //libraries needed by the program
 
 //function to find the number of mines near the given grid
-
 int convert (int n, int m, int r, int c, int arr[n][m])
 {
   //-1 = bomb; 0 = blank; +ve = no. of mines around it...arr[][]
@@ -13,8 +12,7 @@ int convert (int n, int m, int r, int c, int arr[n][m])
   int start_row, end_row, start_col, end_col;
   int mines_count = 0;
   
-  //initialization for rows
-  
+  //initialization for rows 
   if (r == 0)
     {
       start_row = 0;
@@ -35,7 +33,6 @@ int convert (int n, int m, int r, int c, int arr[n][m])
     }
   
   //initialization for coloumns
-  
   if (c == 0)
     {
       start_col = 0;
@@ -55,7 +52,6 @@ int convert (int n, int m, int r, int c, int arr[n][m])
     }
   
   //extracting the grids around the given grid and seing the mines around it
-  
   for (int i = start_row; i <= end_row; i++)
     {
       for (int j = start_col; j <= end_col; j++)
@@ -86,13 +82,11 @@ void display_end (int n, int m, int r, int c, int arr[n][m], int open[n][m])
   printf ("\n\n");
   
   //printing the mine
-  
   for (int i = 0; i < n; i++)
     {
       for (int j = 0; j < m; j++)
         {
           //printing the Rows guide
-          
           if (j == 0)
             {
               printf ("   %2dL", i + 1);
@@ -126,14 +120,12 @@ void display_end (int n, int m, int r, int c, int arr[n][m], int open[n][m])
 }
 
 //function to print the mine after each turn
-
 void display (int n, int m, int arr[n][m], int open[n][m])
 {
   
   printf ("      ");
   
   //printing the coloumns guide
-
   for (int j = 0; j < m; j++)
     {
       printf (" %2dC", j + 1);
@@ -217,9 +209,7 @@ int main(void)
   int open[n][m];
 
   int mine_index_unprocessed[z];
-  
   //TAKING AN ARRAY FOR MINES AND THEN FILLING IT WITH RANDOM ASSIGNMENTS    
-
   while (1)
     {
       int conseq = 0;
@@ -231,7 +221,6 @@ int main(void)
           int check = 0;
           
           //checking for repitition
-          
           for (int j = 0; j < i; j++)
             {
               if (mine_index_unprocessed[j] == random_num)
@@ -252,7 +241,6 @@ int main(void)
       int count = 0;
       
       // checking for 9 mines placed in a 3*3 grid in the main array, since it is not allowed 
-      
       for (int i = 1; i < (n - 1); i++)
         {
               for (int j = 1; j < (m - 1); j++)
@@ -268,7 +256,6 @@ int main(void)
         conseq = 1;
         
       //checking for a 4*4 grid mine in the corners, which is not allowed
-      
       if ((m > 2) && (n > 2))
         {
           if ( (arr[0][0] == -1)  && (arr[0][1] == -1) && (arr[1][0] == -1) && (arr[1][1] == -1))
@@ -342,7 +329,6 @@ int main(void)
       scanf ("%d", &r);
       
       //validation
-      
       while ( (r > n) || (r < 1) )
       {
         printf ("Invalid input...please enter again\n\n");
@@ -355,7 +341,6 @@ int main(void)
       scanf ("%d", &c);
 
       //validation
-      
       while ( (c > m) || (c < 1) )
         {
           printf ("Invalid input...please enter again\n\n");
@@ -397,7 +382,6 @@ int main(void)
       arr[r][c] = convert (n, m, r, c, arr);
       //finding the number of mines around the given grid at (r,c)
       
-      
       if (arr[r][c] == 0)
         {
           int zero[n * m * 2];
@@ -423,7 +407,6 @@ int main(void)
               //variables required
               
               //initialization of start_row and end_row
-              
               if (r1 == 0)
                 {
                   start_row = 0;
@@ -443,7 +426,6 @@ int main(void)
                 }
               
               //initialization of start_col and end_col
-              
               if (c1 == 0)
                 {
                   start_col = 0;
@@ -463,13 +445,11 @@ int main(void)
                 }
               
               //running a loop around all the grids of (r,c)
-              
               for (int i = start_row; i <= end_row; i++)
                 {
                   for (int j = start_col; j <= end_col; j++)
                     {
                       //opening the grid at (i,j) if it's unopened
-                      
                       if (open[i][j] == 0)
                         {
                           a++;
@@ -494,7 +474,6 @@ int main(void)
       display (n, m, arr, open);
       //displaying the mine at the end of the move
     }
-    
   return 0;
   //returning 0 and exiting the code
 }
